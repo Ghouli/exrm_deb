@@ -33,27 +33,6 @@ defmodule ExrmDeb.Config do
   validates :licenses, presence: true
   validates :maintainers, presence: true
 
-  def build_config(:distillery, release = %Mix.Releases.Release{}) do
-    base_config =
-      [
-        {:name, Atom.to_string(release.name)},
-        {:description, Project.config[:description]},
-        {:arch, Utils.Config.detect_arch},
-        {:distillery, true}
-      ] ++ config_from_package(Project.config[:package])
-        ++ config_version(release.version, Project.config[:package][:codename])
-
-    base_config =
-      base_config
-      |> Enum.dedup
-      |> Enum.reject(&is_nil(&1))
-      |> Enum.into(%{})
-
-    ExrmDeb.Config
-    |> struct(base_config)
-    |> ExrmDeb.Utils.Config.sanitize_config
-    |> check_valid
-  end
   def build_config(:exrm, old_config = %{}) do
     base_config =
       [
