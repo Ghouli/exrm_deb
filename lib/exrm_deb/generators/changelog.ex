@@ -12,7 +12,7 @@ defmodule ExrmDeb.Generators.Changelog do
     debug "Building Changelog file"
 
     {:ok, time} =
-      Timex.DateTime.now
+      Timex.now
       |> Timex.format("%a, %d %b %Y %H:%M:%S GMT", :strftime)
 
     changelog =

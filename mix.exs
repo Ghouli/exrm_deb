@@ -55,7 +55,7 @@ defmodule ExrmDeb.Mixfile do
     [
      {:exrm, github: "ghouli/exrm"},
      #{:distillery, "~> 1.0"},
-     {:timex, "~> 2.1"},
+     {:timex, "~> 3.0"},
      {:vex, "~> 0.5"},
      {:swab, github: "crownedgrouse/swab", branch: "master"},
      {:dogma, "~> 0.1", only: [:dev, :test]},
