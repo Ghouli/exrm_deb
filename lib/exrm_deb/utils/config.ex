@@ -38,8 +38,10 @@ defmodule ExrmDeb.Utils.Config do
     |> Map.fetch(:exrm_deb)
     |> case do
          {:ok, path} -> path
-         :error      -> # We're trying to build ourself!?
-           Application.get_env(:exrm_deb, :root)
+         :error      -> # We're trying to build ourself!? Determine true root dir from exrm
+           Project.deps_paths
+           |> Map.fetch!(:exrm)
+           |> String.trim_trailing("/deps/exrm")
     end
   end
 
